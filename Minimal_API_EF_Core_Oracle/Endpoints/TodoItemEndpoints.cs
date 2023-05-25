@@ -20,7 +20,7 @@ namespace Minimal_API_EF_Core_Oracle.Endpoints
             app.MapGet("/todoitems/{id}", GetTodoItemById).WithName("GetTodoItemById");
             app.MapGet("/todoitems/done", GetDoneTodoItems);
             app.MapPost("/todoitems", CreateTodoItem);
-            app.MapPut("/todoitems/update", UpdateTodoItem);
+            app.MapPut("/todoitems/{id}", UpdateTodoItem);
             app.MapDelete("/todoitems/{id}", DeleteTodoItem);
         }
 
