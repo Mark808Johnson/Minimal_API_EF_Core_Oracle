@@ -14,7 +14,7 @@ namespace Minimal_API_EF_Core_Oracle.Data
             builder.HasKey(e => e.Id).HasName("SYS_C006997");
             
             builder.Property(e => e.Id)
-                .HasColumnType("NUMBER")
+                .HasColumnType("NUMBER(10, 0)")
                 .HasColumnName("ID");
 
             builder.Property(e => e.CreationTs)

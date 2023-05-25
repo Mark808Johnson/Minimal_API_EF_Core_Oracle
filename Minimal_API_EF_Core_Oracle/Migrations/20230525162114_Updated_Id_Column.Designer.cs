@@ -12,8 +12,8 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace Minimal_API_EF_Core_Oracle.Migrations
 {
     [DbContext(typeof(TodoItemContext))]
-    [Migration("20230525151433_TodoItems_removed_nullability_from_fields_and_Id_to_Int")]
-    partial class TodoItems_removed_nullability_from_fields_and_Id_to_Int
+    [Migration("20230525162114_Updated_Id_Column")]
+    partial class Updated_Id_Column
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,7 @@ namespace Minimal_API_EF_Core_Oracle.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER")
+                        .HasColumnType("NUMBER(10, 0)")
                         .HasColumnName("ID");
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
