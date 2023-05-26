@@ -1,6 +1,12 @@
 # Minimal_API_EF_Core_Oracle
-Simple minimal API integrating EF Core and Oracle DB (11g)
+Simple CRUD minimal API integrating EF Core with Oracle 11g and minimal API functionality (including simple model validation).
 
+Builds on the Oracle quickstart guide for .NET Core, as found here:
+
+https://www.oracle.com/tools/technologies/quickstart-dotnet-for-oracle-database.html#third-option-tab
+
+Initial model created using Database-First approach, before transferring to a Code-First approach via EF Core Migrations. 
+   
 <b>SDK:</b> .Net 7.0 
 
 <b>Database Server:</b> Oracle 11.2.0.2.0 (11g) 
@@ -13,13 +19,16 @@ Simple minimal API integrating EF Core and Oracle DB (11g)
 2. Run **dotnet build** 
 
 3. Amend TodoItemContext connection string in appsettings.json file to match your own Oracle 11g DB.
+   Ensure that you have a user/schema by the name "DEMODOTNET" in your DB (as per the quickstart guide). 
 
-4. Ensure that you have 
+    "ConnectionStrings": {
+    "TodoItemContext": "User Id=      ;Password=       ;Data Source=    "
+  }
 
-4. Navigate to project and run **dotnet ef database update**.
-   This creates the database in your server.
+5. Run **dotnet ef database update**.
+   This creates the database in your server via code-first migrations.
 
-5. Run the project. The API will automatically open in Swagger within your browser. All routes are displayed thus: 
+6. Run the project. The API will automatically open in Swagger within your browser. All routes are displayed thus: 
 
 <b>API functionality</b> 
 - GET /todoitems (Gets all items)
@@ -29,7 +38,7 @@ Simple minimal API integrating EF Core and Oracle DB (11g)
 - PUT /todoitems/{id} (Updates item by Id)
 - DELETE /todoitems/{id} (Deletes item by Id}
 
-<b>Class properties</b> 
+<b>Entity class</b> 
 
 <ins>TodoItem</ins>:
 - Id (int) 
