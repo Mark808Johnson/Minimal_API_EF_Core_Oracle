@@ -41,11 +41,16 @@ namespace Minimal_API_EF_Core_Oracle.Endpoints
             }
         }
 
-        private static async Task<IResult> GetTodoItemById(ITodoService todoService, decimal id)
+        private static async Task<IResult> GetTodoItemById(ITodoService todoService, string id)
         {
+            if (!int.TryParse(id, out int idInt))
+            {
+                return Results.BadRequest("Invalid id format. Expected an integer.");
+            }
+
             try
             {
-                var todoItem = await todoService.GetTodoItemById(id);
+                var todoItem = await todoService.GetTodoItemById(idInt);
                 return Results.Ok(todoItem);
             }
 
@@ -126,11 +131,16 @@ namespace Minimal_API_EF_Core_Oracle.Endpoints
             }
         }
 
-        private static async Task<IResult> DeleteTodoItem(decimal id, ITodoService todoService)
+        private static async Task<IResult> DeleteTodoItem(string id, ITodoService todoService)
         {
+            if (!int.TryParse(id, out int idInt))
+            {
+                return Results.BadRequest("Invalid id format. Expected an integer.");
+            }
+
             try
             {
-                await todoService.DeleteTodoItem(id);
+                await todoService.DeleteTodoItem(idInt);
 
                 return Results.NoContent();
             }

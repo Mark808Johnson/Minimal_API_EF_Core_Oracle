@@ -18,6 +18,10 @@ namespace Minimal_API_EF_Core_Oracle.Validation
                 .WithMessage("Description cannot be empty if provided.")
                 .MaximumLength(100)
                 .WithMessage("Description must have a maximum length of 100 characters");
+
+            RuleFor(x => x)
+                .Must(x => x.Description != null || x.Done != null)
+                .WithMessage("Either Description or Done must be provided in body");
         }
     }
 }
