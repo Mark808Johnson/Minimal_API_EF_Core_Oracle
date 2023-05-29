@@ -10,11 +10,11 @@ namespace Minimal_API_EF_Core_Oracle.Services
     public interface ITodoService
     {
         Task<IEnumerable<TodoItemReadDto>> GetAllTodoItems();
-        Task<TodoItemReadDto> GetTodoItemById(decimal id);
+        Task<TodoItemReadDto> GetTodoItemById(int id);
         Task<IEnumerable<TodoItemReadDto>> GetDoneTodoItems();
         Task<decimal> CreateTodoItem(TodoItemCreateDto newTodoItem);
         Task UpdateTodoItem(TodoItemUpdateDto todoItemToUpdate);
-        Task DeleteTodoItem(decimal id);
+        Task DeleteTodoItem(int id);
     }
 
     public class TodoService : ITodoService
@@ -41,7 +41,7 @@ namespace Minimal_API_EF_Core_Oracle.Services
             return dtos;
         }
 
-        public async Task<TodoItemReadDto> GetTodoItemById(decimal id)
+        public async Task<TodoItemReadDto> GetTodoItemById(int id)
         {
             var todoItem = await _db.TodoItems.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -113,7 +113,7 @@ namespace Minimal_API_EF_Core_Oracle.Services
             await _db.SaveChangesAsync();
         }
 
-        public async Task DeleteTodoItem(decimal id)
+        public async Task DeleteTodoItem(int id)
         {
 
             var todoItem = await _db.TodoItems.FirstOrDefaultAsync(x => x.Id == id);
